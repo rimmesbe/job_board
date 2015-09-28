@@ -1,6 +1,6 @@
 == README
 
-This is a solution for the Job_Board tutorial solution from RailsBridge.
+This is a solution for the Job_Board tutorial from RailsBridge.
 
 
 <tt>rake doc:app</tt>.

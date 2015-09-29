@@ -23,12 +23,12 @@ class JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
-    redirect_to job_path(@job) unless current_user.is_owner?(@job)
+    return redirect_to job_path(@job) unless current_user.is_owner?(@job)
   end
 
   def update
     @job = Job.find(params[:id])
-    redirect_to job_path(@job) unless current_user.is_owner?(@job)
+    return redirect_to job_path(@job) unless current_user.is_owner?(@job)
     @job.update_attributes(job_params)
     redirect_to jobs_path
   end

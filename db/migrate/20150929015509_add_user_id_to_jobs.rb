@@ -1,5 +1,6 @@
 class AddUserIdToJobs < ActiveRecord::Migration
   def change
-      add_column :jobs, :references, :user
+    add_reference :jobs, :user, index: true
+    add_foreign_key :jobs, :users
   end
 end

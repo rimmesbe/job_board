@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  root 'jobs#index'
-  devise_for :users
+  root to: 'jobs#index'
+  devise_for :users, controllers: {
+        sessions: 'users/sessions'
+      }
   resources :jobs
 
   # The priority is based upon order of creation: first created -> highest priority.

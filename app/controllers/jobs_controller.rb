@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:create, :update, :new, :edit, :destroy]
+  before_action :user_signed_in?, only: [:create, :update, :new, :edit, :destroy]
 
   def index
     @jobs = Job.all
@@ -14,7 +15,9 @@ class JobsController < ApplicationController
   end
 
   def create
+    @user = User.find(current_user.id)
     @job = Job.create(job_params)
+    @user.jobs << @job
     redirect_to jobs_path
   end
 

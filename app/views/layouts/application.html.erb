@@ -17,7 +17,7 @@
     <div class="right-nav">
       <% if current_user %>
         <ul>
-          <li><%= current_user.name %></li>
+          <li><%= link_to current_user.name, edit_user_registration_path(current_user) %></li>
           <li><%= link_to "sign-out", destroy_user_session_path, :method => :delete %></li>
         </ul>
       <% else %>

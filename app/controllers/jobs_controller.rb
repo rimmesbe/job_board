@@ -23,18 +23,28 @@ class JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
+    if current_user != @job.user
+      redirect_to job_path(@job)
+    end
   end
 
   def update
     @job = Job.find(params[:id])
+    if current_user != @job.user
+      redirect_to job_path(@job)
+    end
     @job.update_attributes(job_params)
     redirect_to jobs_path
   end
 
   def destroy
     @job = Job.find(params[:id])
-    @job.destroy
-    redirect_to jobs_path
+    if current_user != @job.user
+      redirect_to job_path(@job)
+    else
+      @job.destroy
+      redirect_to jobs_path
+    end
   end
 
   private

@@ -24,7 +24,7 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     unless current_user.is_owner?(@job)
-      flash[:notice] = "You don't own this post"
+      flash[:alert] = "You don't own this post"
       return redirect_to job_path(@job)
     end
   end
@@ -32,7 +32,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     unless current_user.is_owner?(@job)
-      flash[:notice] = "You don't own this post"
+      flash[:alert] = "You don't own this post"
       return redirect_to job_path(@job)
     end
     @job.update_attributes(job_params)
@@ -42,7 +42,7 @@ class JobsController < ApplicationController
   def destroy
     @job = Job.find(params[:id])
     unless current_user.is_owner?(@job)
-      flash[:notice] = "You don't own this post"
+      flash[:alert] = "You don't own this post"
       return redirect_to job_path(@job)
     end
 

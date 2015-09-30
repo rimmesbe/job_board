@@ -4,21 +4,14 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @u = users(:bob)
   end
-
-  test "invalid without a name" do
-    user = User.new
-    assert !user.valid?, "Name is not being validated"
-  end
-
-  test "invalid name gives error message" do
-    @u.name = nil
-    assert_presence(@u, :name)
-  end
-
-  test "invalid email gives error message" do
-    @u.email = nil
-    assert_presence(@u, :email)
-  end
+  # 'shoulda' gem tests:
+  should validate_presence_of(:name)
+  should validate_presence_of(:email)
+  should validate_uniqueness_of(:name)
+  should validate_uniqueness_of(:email)
+  should have_many(:jobs)
+  should_not allow_value("blah").for(:email)
+  should allow_value("a@b.com").for(:email)
 
   test "valid with all attributes" do
     assert @u.valid?, "User is not valid"
@@ -40,3 +33,15 @@ class UserTest < ActiveSupport::TestCase
     assert @u.jobs.all? {|j| j.user == @u }
   end
 end
+
+  #Some verbose raw test methods that were replaced by 'shoulda' gem
+  #.............................................
+  # test "invalid name gives error message" do
+  #   @u.name = nil
+  #   assert_presence(@u, :name)
+  # end
+
+  # test "invalid email gives error message" do
+  #   @u.email = nil
+  #   assert_presence(@u, :email)
+  # end

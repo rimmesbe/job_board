@@ -5,20 +5,9 @@ class JobTest < ActiveSupport::TestCase
     @j = jobs(:carpenter)
   end
 
-  test "invalid with no title" do
-    job = Job.new
-    assert !job.valid?, "Title not being validated"
-  end
-
-  test "invalid title gives error message" do
-    @j.title = nil
-    assert_presence(@j, :title)
-  end
-
-  test "invalid description gives error message" do
-    @j.description = nil
-    assert_presence(@j, :description)
-  end
+  should validate_presence_of(:title)
+  should validate_presence_of(:description)
+  should belong_to(:user)
 
   test "valid with all attributes" do
     assert @j.valid?, "Job is not valid"
@@ -33,3 +22,15 @@ class JobTest < ActiveSupport::TestCase
   end
 
 end
+
+# Old tests replaced with 'Shoulda' gem tests
+#.............................................
+# test "invalid title gives error message" do
+  #   @j.title = nil
+  #   assert_presence(@j, :title)
+  # end
+
+  # test "invalid description gives error message" do
+  #   @j.description = nil
+  #   assert_presence(@j, :description)
+  # end

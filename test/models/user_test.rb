@@ -10,6 +10,16 @@ class UserTest < ActiveSupport::TestCase
     assert !user.valid?, "Name is not being validated"
   end
 
+  test "invalid name gives error message" do
+    @u.name = nil
+    assert_presence(@u, :name)
+  end
+
+  test "invalid email gives error message" do
+    @u.email = nil
+    assert_presence(@u, :email)
+  end
+
   test "valid with all attributes" do
     assert @u.valid?, "User is not valid"
   end

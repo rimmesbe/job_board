@@ -2,5 +2,7 @@
 
 This is a solution for the Job_Board tutorial from RailsBridge.
 
+Continuous test integration set up via TracisCI
+
 
 <tt>rake doc:app</tt>.

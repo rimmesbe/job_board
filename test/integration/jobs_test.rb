@@ -11,4 +11,6 @@ class JobsTest < ActionDispatch::IntegrationTest
       assert has_content?(j.title)
     end
   end
+
+
 end
